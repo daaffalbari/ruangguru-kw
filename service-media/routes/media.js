@@ -6,6 +6,24 @@ const base64Img = require('base64-img');
 // Memanggil model
 const { Media } = require('../models');
 
+// Membuat api get media
+router.get('/', async (req, res) => {
+  const media = await Media.findAll({
+    attributes: ['id', 'image'],
+  });
+
+  // Mengubah image menjadi url
+  const mappedMedia = media.map((m) => {
+    m.image = `${req.get('host')}/${m.image}`;
+    return m;
+  });
+
+  return res.json({
+    status: 'success',
+    data: mappedMedia,
+  });
+});
+
 // Create API post upload image
 router.post('/', (req, res) => {
   const image = req.body.image;
@@ -29,7 +47,7 @@ router.post('/', (req, res) => {
 
     // save in media
     const media = await Media.create({
-      image: `image/${filename}`,
+      image: `images/${filename}`,
     });
     // Jika sukses
     return res.json({
