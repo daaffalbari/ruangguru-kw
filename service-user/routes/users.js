@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
 require('dotenv').config();
+const fs = require('fs');
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
+const usersHandler = require('./handler/users');
+
+// Post user register
+router.post('/register', usersHandler.register);
+
+// Post user login
+router.post('/login', usersHandler.login);
+
+// Put user update
+router.put('/:id', usersHandler.update);
+router.get('/:id', usersHandler.getUser);
+router.get('/', usersHandler.getUsers);
 
 module.exports = router;
