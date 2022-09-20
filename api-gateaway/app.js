@@ -12,6 +12,8 @@ const coursesRouter = require('./routes/courses');
 const meidaRouter = require('./routes/media');
 const ordersRouter = require('./routes/orders');
 
+const verifyToken = require('./middlewares/verifyToken');
+
 const app = express();
 
 // view engine setup
