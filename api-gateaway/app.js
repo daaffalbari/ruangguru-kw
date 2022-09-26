@@ -9,8 +9,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const paymentsRouter = require('./routes/payments');
 const coursesRouter = require('./routes/courses');
-const meidaRouter = require('./routes/media');
+const mediaRouter = require('./routes/media');
 const ordersRouter = require('./routes/orders');
+const refreshTokenRouter = require('./routes/refreshToken');
 
 const verifyToken = require('./middlewares/verifyToken');
 
@@ -30,8 +31,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/payments', paymentsRouter);
 app.use('/courses', coursesRouter);
-app.use('/media', meidaRouter);
+app.use('/media', mediaRouter);
 app.use('/orders', ordersRouter);
+app.use('/refresh-token', refreshTokenRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
